@@ -1,14 +1,18 @@
 import { useState, useRef } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import { updateProfile } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
+const dispatch = useDispatch()
+
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
@@ -25,7 +29,7 @@ const Login = () => {
     );
 
     if (message) {
-      setErrorMessage(message);  // Set the error message properly
+      setErrorMessage(message); // Set the error message properly
       return;
     }
 
@@ -34,27 +38,69 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse"); // Redirect after sign-in
+          console.log("User created:", user);
 
+          // Update the profile with the display name
+          if (name.current?.value) {
+            updateProfile(user, {
+              displayName: name.current.value,
+              photoURL: "https://avatars.githubusercontent.com/u/163725677?v=4",
+            })
+              .then(() => {
+                 const { uid, email, displayName, photoURL } = auth.currentUser;
+                        dispatch(
+                          addUser({
+                            uid: uid,
+                            email: email,
+                            displayName: displayName,
+                            photoURL: photoURL,
+                          })
+                        );
+                console.log("Profile updated!");
+                navigate("/browse"); // Redirect after sign-up
+              })
+              .catch((error) => {
+                console.error("Error updating profile:", error.message);
+                setErrorMessage(error.message); // Log error
+              });
+          }
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage); // Log error
+          console.error("Sign Up Error:", errorCode, errorMessage);
+          setErrorMessage(errorMessage); // Log error
         });
     } else {
       // Sign In Logic
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("User Signed In: ", user);
-          navigate("/browse"); // Redirect after sign-in
+          console.log("User Signed In:", user);
+
+          // Only update profile if the name is provided during sign-in
+          if (name.current?.value && !user.displayName) {
+            updateProfile(user, {
+              displayName: name.current.value,
+              photoURL: "https://avatars.githubusercontent.com/u/163725677?v=4",
+            })
+              .then(() => {
+                console.log("Profile updated!");
+                navigate("/browse"); // Redirect after sign-in
+              })
+              .catch((error) => {
+                console.error("Error updating profile:", error.message);
+                setErrorMessage(error.message); // Log error
+              });
+          } else {
+            navigate("/browse"); // Redirect immediately if no need for update
+          }
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage); // Log error
+          console.error("Sign In Error:", errorCode, errorMessage);
+          setErrorMessage(errorMessage); // Log error
         });
     }
   };
@@ -64,7 +110,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Header />
       <div className="absolute">
         <img

@@ -23,7 +23,7 @@ const Body = () => {
   ]);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(
@@ -39,8 +39,7 @@ const Body = () => {
       }
     });
 
-    // Cleanup the listener when the component unmounts
-    return () => unsubscribe();
+   
   }, [dispatch]);
 
   return (
