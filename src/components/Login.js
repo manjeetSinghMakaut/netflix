@@ -7,15 +7,15 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { Bgpic, USERLOGO } from "../utils/constants";
 const Login = () => {
+  
 const dispatch = useDispatch()
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -38,13 +38,12 @@ const dispatch = useDispatch()
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("User created:", user);
 
           // Update the profile with the display name
           if (name.current?.value) {
             updateProfile(user, {
               displayName: name.current.value,
-              photoURL: "https://avatars.githubusercontent.com/u/163725677?v=4",
+              photoURL:USERLOGO,
             })
               .then(() => {
                  const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -56,8 +55,7 @@ const dispatch = useDispatch()
                             photoURL: photoURL,
                           })
                         );
-                console.log("Profile updated!");
-                navigate("/browse"); // Redirect after sign-up
+      
               })
               .catch((error) => {
                 console.error("Error updating profile:", error.message);
@@ -76,24 +74,21 @@ const dispatch = useDispatch()
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("User Signed In:", user);
 
           // Only update profile if the name is provided during sign-in
           if (name.current?.value && !user.displayName) {
             updateProfile(user, {
               displayName: name.current.value,
-              photoURL: "https://avatars.githubusercontent.com/u/163725677?v=4",
+              photoURL: USERLOGO,
             })
               .then(() => {
-                console.log("Profile updated!");
-                navigate("/browse"); // Redirect after sign-in
+          // Redirect after sign-in
               })
               .catch((error) => {
                 console.error("Error updating profile:", error.message);
                 setErrorMessage(error.message); // Log error
               });
           } else {
-            navigate("/browse"); // Redirect immediately if no need for update
           }
         })
         .catch((error) => {
@@ -114,7 +109,7 @@ const dispatch = useDispatch()
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={Bgpic}
           alt="logo"
         />
       </div>
