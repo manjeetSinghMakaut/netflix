@@ -105,12 +105,13 @@ const dispatch = useDispatch()
   };
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden ">
       <Header />
-      <div className="absolute">
+      <div className="absolute inset-0 -z-10">
         <img
           src={Bgpic}
           alt="logo"
+           className="w-full h-full object-cover"
         />
       </div>
 
