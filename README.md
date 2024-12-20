@@ -37,6 +37,7 @@
 - use cdn link
 - made the browser page amazing
 - made many custom hooks for fetching
+- building gpt search feature
 
 
 # features
