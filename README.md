@@ -38,6 +38,9 @@
 - made the browser page amazing
 - made many custom hooks for fetching
 - building gpt search feature
+- Build Search Page
+- build -Search-Bar
+- ##(Multi-Langauge Feature In our App)
 
 
 # features
