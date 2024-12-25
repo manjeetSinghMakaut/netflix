@@ -5,7 +5,7 @@ import GptMoviesSuggestions from './GptMoviesSuggestions'
 const GptSearch = () => {
   return (
     <div className=' bg-black min-h-screen'>
-      <GptSearchBar/>
+      <GptSearchBar />
       <GptMoviesSuggestions/>
 
     </div>
@@ -13,3 +13,4 @@ const GptSearch = () => {
 }
 
 export default GptSearch
+ 

@@ -21,3 +21,5 @@ export const API_OPTIONS = {
     { identifier: "spanish", name: "Spanish" },
   ];
   
+
+export const OPENAI_KEY = "REMOVED_KEY"

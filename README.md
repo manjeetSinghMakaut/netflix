@@ -41,6 +41,7 @@
 - Build Search Page
 - build -Search-Bar
 - ##(Multi-Langauge Feature In our App)
+- Integrate GPT APIS(get openai key )
 
 
 # features
