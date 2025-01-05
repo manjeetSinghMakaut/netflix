@@ -2,6 +2,7 @@ export const LOGO = "https://help.nflxext.com/helpcenter/OneTrust/oneTrust_produ
 export const USERLOGO =  "https://occ-0-2164-3467.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXz4LMjJFidX8MxhZ6qro8PBTjmHbxlaLAbk45W1DXbKsAIOwyHQPiMAuUnF1G24CLi7InJHK4Ge4jkXul1xIW49Dr5S7fc.png?r=e6e"
 export const Bgpic="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500"
+export const TMDB_KEY = process.env.REACT_APP_TMDB_KEY; // This picks up the TMDB key from the .env file
 
 
 
@@ -10,7 +11,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMzNiNWYyMmJhOTZhZjc5ZDZjMTYzZGM3ZWM5ZGY4ZiIsIm5iZiI6MTczNDQ2ODU0OS40MzkwMDAxLCJzdWIiOiI2NzYxZTNjNWYyMmQzOTVkNzZkMzQ2YjIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.0DVzDqRvIMw9O2547LKI1CY5iTZ1vYexXSNYf0wGNVc'
+      Authorization: 'Bearer '+ TMDB_KEY,
     }
   };
 
@@ -24,4 +25,5 @@ export const API_OPTIONS = {
 
 
 
-export const OPENAI_KEY= process.env.REACT_APP_OPENAI_KEY;
+  export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+  
