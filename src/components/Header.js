@@ -65,7 +65,7 @@ const Header = () => {
           {showGptSearch && (
             <select
               onChange={handleLanguageChange}
-              className="px-1 py-2 m-2 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
+              className="p-2 text-sm  md:px-2 md:py-2 : m-1 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
             >
               {SUPPORTEDLANGUAGES.map((language) => (
                 <option key={language.identifier} value={language.identifier}>
@@ -77,16 +77,16 @@ const Header = () => {
 
           <button
             onClick={handleGptSearchClick}
-            className="px-2 py-2 m-2 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
+            className=" p-2 text-sm  md:px-2 md:py-2 : m-1 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
           >
             {showGptSearch? "HomePage" : "GPT-Search"}
           </button>
           <img
-            className="w-9 h-9 rounded-xl "
+            className="md:w-9 md:h-9 rounded-xl "
             alt="user logo"
             src={user?.photoURL || USERLOGO} // Default avatar if no photoURL
             />
-          <button onClick={handleSignOut} className="font-bold text-white ml-4">
+          <button onClick={handleSignOut} className="md:font-bold text-white font-medium md:ml-4">
             Sign Out
           </button>
         </div>

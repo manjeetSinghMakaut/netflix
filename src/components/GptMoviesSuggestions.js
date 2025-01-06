@@ -8,7 +8,7 @@ const GptMoviesSuggestions = () => {
   if (!MovieNames) return null;
 
   return (
-    <div className="p-14 m-4 rounded-3xl text-white font-semibold overflow-x-auto bg-gray-950 bg-opacity-50 backdrop-blur-lg ">
+    <div className=" p-8 md:p-14  rounded-3xl text-white font-semibold overflow-x-auto bg-gray-950 bg-opacity-50 backdrop-blur-lg ">
       <div className="">
         {MovieNames.map((movieName,index) => (
           <MovieList
