@@ -105,6 +105,9 @@ const Login = () => {
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
+    if (name.current) name.current.value = "";
+    if (email.current) email.current.value = "";
+    if (password.current) password.current.value = "";
   };
 
   return (
@@ -130,9 +133,9 @@ const Login = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-black bg-opacity-75 p-8 md:p-16 z-10 w-full max-w-[460px] mx-auto mt-24 text-white rounded-lg"
+        className="bg-black bg-opacity-75 p-16 md:p-16 z-10 w-full md:max-w-[460px] mx-auto mt-24 text-white rounded-lg"
       >
-        <h1 className="text-3xl md:text-3xl font-bold py-4 ">
+        <h1 className="text-2xl md:text-3xl font-bold py-4 ">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
 
@@ -149,21 +152,21 @@ const Login = () => {
           ref={email}
           type="text"
           placeholder="Email or mobile number"
-          className="p-4 my-2 w-full rounded bg-transparent border font-semibold border-gray-500"
+          className="md:p-4 p-2 my-2 w-full rounded bg-transparent border font-semibold border-gray-500"
         />
 
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-4 my-2 w-full rounded bg-transparent border font-semibold border-gray-500"
+          className="md:p-4 p-2 my-2 w-full rounded bg-transparent border font-semibold border-gray-500"
         />
 
         <p className="text-red-600 p-1 font-semibold">{errorMessage}</p>
 
         <button
           type="submit"
-          className="p-2 my-4 bg-red-600 hover:bg-red-800 text-white rounded w-full"
+          className="md:p-4 p-2 my-4 bg-red-600 hover:bg-red-800 text-white rounded w-full"
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
@@ -179,14 +182,14 @@ const Login = () => {
           {isSignInForm ? (
             <>
               New to Netflix?{" "}
-              <span className="font-semibold hover:underline cursor-pointer">
+              <span className="font-semibold text-sm md:text-lg hover:underline cursor-pointer">
                 Sign Up Now
               </span>
             </>
           ) : (
             <>
               Already Registered?{" "}
-              <span className="font-semibold hover:underline cursor-pointer">
+              <span className="font-semibold text-sm md:text-lg  hover:underline cursor-pointer">
                 Sign In Now
               </span>
             </>

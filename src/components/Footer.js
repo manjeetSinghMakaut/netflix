@@ -20,7 +20,7 @@ const Footer = () => {
       ];
   return (
     <footer className="bg-[#141414] border-t-none">
-      <div className="flex items-center justify-start space-x-4 pl-12 pt-24"> {/* Added flexbox for alignment */}
+      <div className="flex items-center justify-start space-x-4 pl-6 md:pl-12 pt-16 md:pt-20"> {/* Added flexbox for alignment */}
         <a
           href="https://www.facebook.com/NetflixIN/"
           target="_blank"
@@ -51,7 +51,7 @@ const Footer = () => {
         </a>
       </div>
 
-      <div className="pt-6 pl-12">
+      <div className="pt-6 pl-6 md:pl-12">
   <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">  
     {listItems.map((item, index) => (
       <li key={index} className="mb-2 text-white opacity-50 hover:underline text-xs">
@@ -60,7 +60,7 @@ const Footer = () => {
     ))}
   </ul>
 </div>
-<button className="p-1 m-1 border ml-12 border-white border-solid border-opacity-60 text-white opacity-50 rounded-sm font-extralight text-sm hover:opacity-95">
+<button className="p-1 m-1 border ml-6 md:ml-12 border-white border-solid border-opacity-60 text-white opacity-50 rounded-sm font-extralight text-sm hover:opacity-95">
   service code
 </button>   
 

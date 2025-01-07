@@ -19,10 +19,13 @@ const Header = () => {
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {})
+      .then(() => {
+        
+      })
       .catch((error) => {
         navigate("/error");
-      });
+      }
+    );
   };
 
   const handleGptSearchClick = () => {
@@ -65,7 +68,7 @@ const Header = () => {
           {showGptSearch && (
             <select
               onChange={handleLanguageChange}
-              className="p-2 text-sm  md:px-2 md:py-2 : m-1 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
+              className="p-1 md:p-2 text-sm  md:px-2 md:py-2 : m-1 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
             >
               {SUPPORTEDLANGUAGES.map((language) => (
                 <option key={language.identifier} value={language.identifier}>
@@ -77,16 +80,16 @@ const Header = () => {
 
           <button
             onClick={handleGptSearchClick}
-            className=" p-2 text-sm  md:px-2 md:py-2 : m-1 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
+            className=" p-1 md:p-2 text-sm  md:px-2 md:py-2 : m-1 bg-gray-800 text-gray-200 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition duration-200 font-medium shadow-md"
           >
             {showGptSearch? "HomePage" : "GPT-Search"}
           </button>
           <img
-            className="md:w-9 md:h-9 rounded-xl "
+            className="md:w-9 md:h-9 h-6 w-6 rounded-xl ml-1 mr-1  md:ml-0 "
             alt="user logo"
             src={user?.photoURL || USERLOGO} // Default avatar if no photoURL
             />
-          <button onClick={handleSignOut} className="md:font-bold text-white font-medium md:ml-4">
+          <button onClick={handleSignOut} className="md:font-bold text-white font-medium  md:ml-2">
             Sign Out
           </button>
         </div>
