@@ -5,7 +5,7 @@ import FavouriteMovies from './FavouriteMovies';
 const Favourite = () => {
   return (
     <div >
-      <Header />
+      
       <FavouriteMovies />
     </div>
   );

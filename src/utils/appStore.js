@@ -3,6 +3,7 @@ import userReducer from "./userSlice";
 import moviesReducer from "../utils/movieSlice";
 import configReducer from "./configSlice"
 import gptReducer from "./gptSlice";
+import favouriteReducer from "./favouriteSlice";
 
 const appStore = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const appStore = configureStore({
     movies: moviesReducer,
     gpt: gptReducer,
     config:configReducer,
+    favourite:favouriteReducer,
   },
 });
 export default appStore;

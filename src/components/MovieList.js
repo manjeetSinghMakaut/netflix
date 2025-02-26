@@ -1,12 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef} from "react";
 import MovieCard from "./MovieCard";
 import { IMG_CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addfavouriteMovies } from "../utils/favouriteSlice";
 
 const MovieList = ({ title, movies }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const movieRefs = useRef({});
 
+ const dispatch = useDispatch()
 
+const handleAddtoFavourites = ()=>{
+  dispatch(addfavouriteMovies(selectedMovie))
+}
 
   return (
     <div className="py-2 overflow-hidden">
@@ -57,7 +63,7 @@ const MovieList = ({ title, movies }) => {
               <div className="flex flex-row justify-between">
               <button
                 className="self-end mt-3 px-7 py-2 bg-slate-700 text-white text-sm font-semibold rounded-md hover:bg-green-700 transition-colors "
-                
+                onClick={()=>{handleAddtoFavourites(selectedMovie)}}
               >
                 Add To Favourite
               </button>
